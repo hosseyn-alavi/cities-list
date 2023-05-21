@@ -5,16 +5,16 @@ async function getCities() {
         const buttonText = document.getElementById("get-city-button-text");
         buttonText.innerHTML = "Loading...";
 
-        const response = await fetch(
+        const response = await axios(
             "https://countriesnow.space/api/v0.1/countries/population/cities"
         );
-        const json = await response.json();
+        console.log(response)
 
         buttonText.innerHTML = "Get all cities";
 
-        list = json.data;
+        list = response.data.data;
 
-        renderTable(json.data);
+        renderTable(response.data.data);
     } catch (err) {
         console.log("Error:", err);
     }
@@ -64,3 +64,6 @@ function handleSearch(event) {
 
     renderTable(filteredList);
 }
+
+
+console.log(_.uniq([2, 1, 2, 3,3,3,3,4,4,4,4,5]))
